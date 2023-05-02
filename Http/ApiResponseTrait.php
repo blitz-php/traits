@@ -9,7 +9,7 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-namespace BlitzPHP\Traits;
+namespace BlitzPHP\Traits\Http;
 
 use BlitzPHP\Contracts\Http\StatusCode;
 
