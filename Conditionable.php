@@ -19,10 +19,9 @@ trait Conditionable
     /**
      * Appliquez le callback si la "valeur" donnée est (ou se résout) véridique.
      *
-     * @param  (Closure($this): mixed)|mixed|null  $value
-     * @param  (callable($this, mixed): mixed)|null  $callback
-     * @param  (callable($this, mixed): mixed)|null  $default
-     * @param mixed|null $value
+     * @param (Closure($this): mixed)|mixed|null   $value
+     * @param (callable($this, mixed): mixed)|null $callback
+     * @param (callable($this, mixed): mixed)|null $default
      *
      * @return $this|mixed
      */
@@ -51,10 +50,9 @@ trait Conditionable
     /**
      * Appliquez le callback si la "valeur" donnée est (ou se résout) fausse.
      *
-     * @param  (\Closure($this): mixed)|mixed|null  $value
-     * @param  (callable($this, mixed): mixed)|null  $callback
-     * @param  (callable($this, mixed): mixed)|null  $default
-     * @param mixed|null $value
+     * @param (Closure($this): mixed)|mixed|null   $value
+     * @param (callable($this, mixed): mixed)|null $callback
+     * @param (callable($this, mixed): mixed)|null $default
      *
      * @return $this|mixed
      */

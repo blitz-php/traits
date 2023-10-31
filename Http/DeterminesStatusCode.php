@@ -23,7 +23,7 @@ trait DeterminesStatusCode
      */
     abstract protected function status(): int;
 
-	/**
+    /**
      * Déterminez si le code de réponse était la réponse 200 "OK".
      */
     public function ok(): bool

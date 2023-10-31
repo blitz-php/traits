@@ -185,7 +185,7 @@ trait InstanceConfigTrait
             return $this->_config;
         }
 
-        if (strpos($key, '.') === false) {
+        if (! str_contains($key, '.')) {
             return $this->_config[$key] ?? null;
         }
 
@@ -240,7 +240,7 @@ trait InstanceConfigTrait
             return;
         }
 
-        if (strpos($key, '.') === false) {
+        if (! str_contains($key, '.')) {
             $this->_config[$key] = $value;
 
             return;
@@ -269,7 +269,7 @@ trait InstanceConfigTrait
      */
     protected function _configDelete(string $key): void
     {
-        if (strpos($key, '.') === false) {
+        if (! str_contains($key, '.')) {
             unset($this->_config[$key]);
 
             return;

@@ -20,7 +20,7 @@ trait InteractsWithTime
     /**
      * Obtenez le nombre de secondes jusqu'au DateTime donné.
      */
-    protected function secondsUntil(DateTimeInterface|DateInterval|int $delay): int
+    protected function secondsUntil(DateInterval|DateTimeInterface|int $delay): int
     {
         $delay = $this->parseDateInterval($delay);
 
@@ -32,7 +32,7 @@ trait InteractsWithTime
     /**
      * Obtenez l'horodatage UNIX "disponible à".
      */
-    protected function availableAt(DateTimeInterface|DateInterval|int $delay = 0): int
+    protected function availableAt(DateInterval|DateTimeInterface|int $delay = 0): int
     {
         $delay = $this->parseDateInterval($delay);
 
@@ -46,7 +46,7 @@ trait InteractsWithTime
      *
      * @return DateTimeInterface|int
      */
-    protected function parseDateInterval(DateTimeInterface|DateInterval|int $delay)
+    protected function parseDateInterval(DateInterval|DateTimeInterface|int $delay)
     {
         if ($delay instanceof DateInterval) {
             $delay = Date::now()->add($delay);

@@ -166,7 +166,7 @@ trait EnumeratesValues
     /**
      * Alias pour la méthode "avg".
      *
-     * @param  (callable(mixed): float|int)|string|null  $callback
+     * @param (callable(mixed): float|int)|string|null $callback
      *
      * @return float|int|null
      */
@@ -178,7 +178,7 @@ trait EnumeratesValues
     /**
      * Alias pour la méthode "contains".
      *
-     * @param  (callable(mixed, mixed): bool)|mixed|string  $key
+     * @param (callable(mixed, mixed): bool)|mixed|string $key
      */
     public function some($key, mixed $operator = null, mixed $value = null): bool
     {
@@ -248,7 +248,7 @@ trait EnumeratesValues
     /**
      * Déterminez si tous les éléments réussissent le test de vérité donné.
      *
-     * @param  (callable(mixed, mixed): bool)|mixed|string  $key
+     * @param (callable(mixed, mixed): bool)|mixed|string $key
      */
     public function every($key, mixed $operator = null, mixed $value = null): bool
     {
@@ -360,8 +360,7 @@ trait EnumeratesValues
     /**
      * Obtenir la valeur minimale d'une clé donnée.
      *
-     * @param  (callable(mixed $value):mixed)|string|null  $callback
-     * @param mixed|null $callback
+     * @param (callable(mixed $value):mixed)|string|null $callback
      *
      * @return mixed
      */
@@ -377,8 +376,7 @@ trait EnumeratesValues
     /**
      * Obtenir la valeur maximale d'une clé donnée.
      *
-     * @param  (callable(mixed $value):mixed)|string|null  $callback
-     * @param mixed|null $callback
+     * @param (callable(mixed $value):mixed)|string|null $callback
      *
      * @return mixed
      */
@@ -408,8 +406,7 @@ trait EnumeratesValues
     /**
      * Partitionnez la collection en deux tableaux à l'aide du callback ou de la clé donnés.
      *
-     * @param  (callable(mixed $value, mixed $key): bool)|mixed|string  $key
-     * @param mixed $key
+     * @param (callable(mixed $value, mixed $key): bool)|mixed|string $key
      *
      * @return static<int<0, 1>, static>
      */
@@ -436,8 +433,7 @@ trait EnumeratesValues
     /**
      * Obtenir la somme des valeurs données.
      *
-     * @param  (callable(mixed $value): mixed)|string|null  $callback
-     * @param mixed|null $callback
+     * @param (callable(mixed $value): mixed)|string|null $callback
      *
      * @return mixed
      */
@@ -453,8 +449,8 @@ trait EnumeratesValues
     /**
      * Appliquez le callback si la collection est vide.
      *
-     * @param  (callable($this): mixed)  $callback
-     * @param  (callable($this): mixed)|null  $default
+     * @param (callable($this): mixed)      $callback
+     * @param (callable($this): mixed)|null $default
      *
      * @return $this|mixed
      */
@@ -466,8 +462,8 @@ trait EnumeratesValues
     /**
      * Appliquez le callback si la collection n'est pas vide.
      *
-     * @param  (callable($this): mixed)  $callback
-     * @param  (callable($this): mixed)|null  $default
+     * @param (callable($this): mixed)      $callback
+     * @param (callable($this): mixed)|null $default
      *
      * @return $this|mixed
      */
@@ -479,8 +475,8 @@ trait EnumeratesValues
     /**
      * Appliquez le callback seulement si la collection est vide.
      *
-     * @param callable($this): mixed $callback
-     * @param  (callable($this): mixed)|null  $default
+     * @param callable($this): mixed        $callback
+     * @param (callable($this): mixed)|null $default
      *
      * @return $this|mixed
      */
@@ -492,8 +488,8 @@ trait EnumeratesValues
     /**
      * Appliquez le callback seulement si la collection n'est pas vide.
      *
-     * @param callable($this): mixed $callback
-     * @param  (callable($this): mixed)|null  $default
+     * @param callable($this): mixed        $callback
+     * @param (callable($this): mixed)|null $default
      *
      * @return $this|mixed
      */
@@ -678,7 +674,7 @@ trait EnumeratesValues
     public function pipeThrough(array $callbacks): mixed
     {
         return Collection::make($callbacks)->reduce(
-            fn ($carry, $callback) => $callback($carry),
+            static fn ($carry, $callback) => $callback($carry),
             $this,
         );
     }
@@ -686,7 +682,7 @@ trait EnumeratesValues
     /**
      * Réduisez la collection à une seule valeur.
      *
-     * @param  callable(mixed $result, mixed $value, mixed $key): mixed  $callback
+     * @param callable(mixed $result, mixed $value, mixed $key): mixed $callback
      */
     public function reduce(callable $callback, mixed $initial = null): mixed
     {
@@ -732,8 +728,7 @@ trait EnumeratesValues
     /**
      * Créez une collection de tous les éléments qui ne réussissent pas un test de vérité donné.
      *
-     * @param  (callable(mixed $value, mixed $key): bool)|bool|mixed  $callback
-     * @param mixed $callback
+     * @param (callable(mixed $value, mixed $key): bool)|bool|mixed $callback
      *
      * @return static
      */
@@ -765,8 +760,7 @@ trait EnumeratesValues
     /**
      * Renvoie uniquement les éléments uniques du tableau de collection.
      *
-     * @param  (callable(mixed $value, mixed $key): mixed)|string|null  $key
-     * @param mixed|null $key
+     * @param (callable(mixed $value, mixed $key): mixed)|string|null $key
      *
      * @return static
      */
@@ -788,8 +782,7 @@ trait EnumeratesValues
     /**
      * Renvoie uniquement les éléments uniques du tableau de collection en utilisant une comparaison stricte.
      *
-     * @param  (callable(mixed $value, mixed $key): mixed)|string|null  $key
-     * @param mixed|null $key
+     * @param (callable(mixed $value, mixed $key): mixed)|string|null $key
      *
      * @return static
      */

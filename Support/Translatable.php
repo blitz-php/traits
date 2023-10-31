@@ -19,10 +19,9 @@ use BlitzPHP\Translator\Translate;
  */
 trait Translatable
 {
-    protected string $_locale = 'en';
-
+    protected string $_locale      = 'en';
     private ?Translate $translator = null;
-    
+
     /**
      * Analyse la chaîne de langue d'un fichier, charge le fichier, si nécessaire, et obtient la traduction souhaitée.
      *

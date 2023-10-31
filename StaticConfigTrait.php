@@ -259,7 +259,7 @@ trait StaticConfigTrait
         foreach ($parsed as $k => $v) {
             if (is_int($k)) {
                 unset($parsed[$k]);
-            } elseif (strpos($k, '_') === 0) {
+            } elseif (str_starts_with($k, '_')) {
                 $exists[substr($k, 1)] = ($v !== '');
                 unset($parsed[$k]);
             } elseif ($v === '' && ! $exists[$k]) {
