@@ -12,6 +12,7 @@
 namespace BlitzPHP\Traits\Http;
 
 use BlitzPHP\Contracts\Http\StatusCode;
+use BlitzPHP\Contracts\Support\Arrayable;
 
 /**
  * Fournit des méthodes courantes, plus lisibles,
@@ -404,6 +405,16 @@ trait ApiResponseTrait
      */
     private function _parseParams($message, $code = null, $data = []): array
     {
+        if ($message instanceof Arrayable) {
+            $message = $message->toArray();
+        }
+        if ($code instanceof Arrayable) {
+            $code = $code->toArray();
+        }
+        if ($data instanceof Arrayable) {
+            $data = $data->toArray();
+        }
+
         if (is_array($message) || is_object($message)) {
             if (empty($data)) {
                 $data = $message;
