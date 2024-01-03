@@ -1005,7 +1005,7 @@ trait EnumeratesValues
             return $value;
         }
 
-        return fn ($item) => Arr::get($item, $value);
+        return fn ($item) => Arr::dataGet($item, $value);
     }
 
     /**
