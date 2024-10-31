@@ -97,7 +97,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    final protected function respondBadRequest($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondBadRequest($message, null|array|int|string $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -116,7 +116,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    final protected function respondConflict($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondConflict($message, null|array|int|string $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -136,7 +136,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    final protected function respondCreated($message, $result = null)
+    protected function respondCreated($message, $result = null)
     {
         ['message' => $message, 'data' => $result] = $this->_parseParams($message, null, $result);
 
@@ -166,7 +166,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    final protected function respondForbidden($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondForbidden($message, null|array|int|string $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -187,7 +187,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    final protected function respondGone($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondGone($message, null|array|int|string $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -206,7 +206,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    final protected function respondInternalError($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondInternalError($message, null|array|int|string $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -225,7 +225,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    final protected function respondInvalidToken($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondInvalidToken($message, null|array|int|string $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -244,7 +244,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    final protected function respondMethodNotAllowed($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondMethodNotAllowed($message, null|array|int|string $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -262,7 +262,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    final protected function respondNoContent(string $message = 'No Content')
+    protected function respondNoContent(string $message = 'No Content')
     {
         return $this->respondSuccess($message, null, $this->codes['no_content'] ?? StatusCode::NO_CONTENT);
     }
@@ -274,7 +274,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    final protected function respondNotAcceptable($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondNotAcceptable($message, null|array|int|string $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -293,7 +293,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    final protected function respondNotFound($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondNotFound($message, null|array|int|string $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -312,7 +312,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    final protected function respondNotImplemented($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondNotImplemented($message, null|array|int|string $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -332,7 +332,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    final protected function respondOk($message, $result = null)
+    protected function respondOk($message, $result = null)
     {
         ['message' => $message, 'data' => $result] = $this->_parseParams($message, null, $result);
 
@@ -346,7 +346,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface|void
      */
-    final protected function respondTooManyRequests($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondTooManyRequests($message, null|array|int|string $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -367,7 +367,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    final protected function respondUnauthorized($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondUnauthorized($message, null|array|int|string $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -387,7 +387,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    final protected function respondUpdated($message, $result = null)
+    protected function respondUpdated($message, $result = null)
     {
         ['message' => $message, 'data' => $result] = $this->_parseParams($message, null, $result);
 
