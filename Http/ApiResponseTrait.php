@@ -56,6 +56,8 @@ trait ApiResponseTrait
         'server_error'              => StatusCode::INTERNAL_ERROR,
         'unsupported_grant_type'    => StatusCode::NOT_IMPLEMENTED,
         'not_implemented'           => StatusCode::NOT_IMPLEMENTED,
+        'precondition_failed'       => StatusCode::PRECONDITION_FAILED,
+        'precondition_required'     => StatusCode::PRECONDITION_REQUIRED,
     ];
 
     /**
@@ -337,6 +339,44 @@ trait ApiResponseTrait
         ['message' => $message, 'data' => $result] = $this->_parseParams($message, null, $result);
 
         return $this->respondSuccess($message ?? 'Ok', $result, $this->codes['ok'] ?? StatusCode::OK);
+    }
+
+    /**
+     * Utilisé lorsque l'utisateur ne rempli pas une condition nécessaire à l'execution de l'action.
+     *
+     * @param mixed $message
+     *
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    protected function respondPreconditionFailed($message, null|array|int|string $code = null, array $errors = [])
+    {
+        if (is_array($code)) {
+            $errors = $code;
+            $code   = null;
+        }
+
+        ['message' => $message, 'data' => $errors, 'code' => $code] = $this->_parseParams($message, $code, $errors);
+
+        return $this->respondFail($message ?? 'Precondition Faild', $this->codes['precondition_failed'] ?? StatusCode::PRECONDITION_FAILED, $code, $errors);
+    }
+
+    /**
+     * Utilisé lorsqu'il y a une condition necessaire avant l'execution de l'action.
+     *
+     * @param mixed $message
+     *
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    protected function respondPreconditionRequired($message, null|array|int|string $code = null, array $errors = [])
+    {
+        if (is_array($code)) {
+            $errors = $code;
+            $code   = null;
+        }
+
+        ['message' => $message, 'data' => $errors, 'code' => $code] = $this->_parseParams($message, $code, $errors);
+
+        return $this->respondFail($message ?? 'Precondition Required', $this->codes['precondition_required'] ?? StatusCode::PRECONDITION_REQUIRED, $code, $errors);
     }
 
     /**
