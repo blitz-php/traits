@@ -13,12 +13,16 @@ namespace BlitzPHP\Traits\Support;
 
 use BlitzPHP\Utilities\Helpers;
 
+/**
+ * @credit <a href="https://laravel.com">Laravel - Illuminate\Support\Traits\Tappable</a>
+ */
 trait Tappable
 {
     /**
      * Appelez la Closure donnée avec cette instance puis renvoyez l'instance.
      *
-     * @return $this|\BlitzPHP\Traits\Mixins\HigherOrderTapProxy
+	 * @param  (callable($this): mixed)|null  $callback
+     * @return ($callback is null ? \BlitzPHP\Traits\Mixins\HigherOrderTapProxy : $this)
      */
     public function tap(?callable $callback = null)
     {

@@ -19,11 +19,14 @@ trait Conditionable
     /**
      * Appliquez le callback si la "valeur" donnée est (ou se résout) véridique.
      *
-     * @param (Closure($this): mixed)|mixed|null   $value
-     * @param (callable($this, mixed): mixed)|null $callback
-     * @param (callable($this, mixed): mixed)|null $default
+     * @template TWhenParameter
+     * @template TWhenReturnType
      *
-     * @return $this|mixed
+     * @param (\Closure($this): TWhenParameter)|TWhenParameter|null $value
+     * @param (callable($this, TWhenParameter): TWhenReturnType)|null $callback
+     * @param (callable($this, TWhenParameter): TWhenReturnType)|null $default
+	 *
+     * @return $this|TWhenReturnType
      */
     public function when($value = null, ?callable $callback = null, ?callable $default = null)
     {
@@ -50,11 +53,14 @@ trait Conditionable
     /**
      * Appliquez le callback si la "valeur" donnée est (ou se résout) fausse.
      *
-     * @param (Closure($this): mixed)|mixed|null   $value
-     * @param (callable($this, mixed): mixed)|null $callback
-     * @param (callable($this, mixed): mixed)|null $default
+     * @template TUnlessParameter
+     * @template TUnlessReturnType
      *
-     * @return $this|mixed
+     * @param (Closure($this): TUnlessParameter)|TUnlessParameter|null $value
+     * @param (callable($this, TUnlessParameter): TUnlessReturnType)|null $callback
+     * @param (callable($this, TUnlessParameter): TUnlessReturnType)|null $default
+	 *
+     * @return $this|TUnlessReturnType
      */
     public function unless($value = null, ?callable $callback = null, ?callable $default = null)
     {

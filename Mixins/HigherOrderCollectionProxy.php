@@ -14,16 +14,21 @@ namespace BlitzPHP\Traits\Mixins;
 use BlitzPHP\Contracts\Support\Enumerable;
 
 /**
- * @mixin \BlitzPHP\Traits\Enumerable
+ * @template TKey of array-key
  *
- * @credit <a href="https://github.com/tighten/collect">Tightenco\Collect\Support\HigherOrderCollectionProxy</a>
+ * @template-covariant TValue
+ *
+ * @mixin \BlitzPHP\Traits\Enumerable<TKey, TValue>
+ * @mixin TValue
+ *
+ * @credit <a href="https://laravel.com">Laravel - Illuminate\Support\HigherOrderCollectionProxy</a>
  */
 class HigherOrderCollectionProxy
 {
     /**
      * créer une nouvelle instance de proxy.
      *
-     * @param Enumerable $collection La collection opérée.
+     * @param Enumerable<TKey, TValue> $collection La collection opérée.
      * @param string     $method     La méthode faisant l'objet d'un proxy.
      */
     public function __construct(protected Enumerable $collection, protected string $method)
@@ -43,6 +48,10 @@ class HigherOrderCollectionProxy
      */
     public function __call(string $method, array $parameters = []): mixed
     {
-        return $this->collection->{$this->method}(fn ($value) => $value->{$method}(...$parameters));
+        return $this->collection->{$this->method}(function ($value) use ($method, $parameters) {
+            return is_string($value)
+                ? $value::{$method}(...$parameters)
+                : $value->{$method}(...$parameters);
+        });
     }
 }

@@ -11,10 +11,13 @@
 
 namespace BlitzPHP\Traits\Support;
 
-use BlitzPHP\Utilities\Date;
+use BlitzPHP\Utilities\DateTime\Date;
 use DateInterval;
 use DateTimeInterface;
 
+/**
+ * @credit <a href="https://laravel.com">Laravel - Illuminate\Support\InteractsWithTime</a>
+ */
 trait InteractsWithTime
 {
     /**
@@ -25,8 +28,8 @@ trait InteractsWithTime
         $delay = $this->parseDateInterval($delay);
 
         return $delay instanceof DateTimeInterface
-                            ? max(0, $delay->getTimestamp() - $this->currentTime())
-                            : (int) $delay;
+			? max(0, $delay->getTimestamp() - $this->currentTime())
+			: (int) $delay;
     }
 
     /**
@@ -37,8 +40,8 @@ trait InteractsWithTime
         $delay = $this->parseDateInterval($delay);
 
         return $delay instanceof DateTimeInterface
-                            ? $delay->getTimestamp()
-                            : Date::now()->addSeconds($delay)->getTimestamp();
+			? $delay->getTimestamp()
+			: Date::now()->addSeconds($delay)->getTimestamp();
     }
 
     /**
