@@ -29,7 +29,7 @@ class HigherOrderCollectionProxy
      * créer une nouvelle instance de proxy.
      *
      * @param Enumerable<TKey, TValue> $collection La collection opérée.
-     * @param string     $method     La méthode faisant l'objet d'un proxy.
+     * @param string                   $method     La méthode faisant l'objet d'un proxy.
      */
     public function __construct(protected Enumerable $collection, protected string $method)
     {
@@ -40,7 +40,7 @@ class HigherOrderCollectionProxy
      */
     public function __get(string $key): mixed
     {
-        return $this->collection->{$this->method}(fn ($value) => is_array($value) ? $value[$key] : $value->{$key});
+        return $this->collection->{$this->method}(static fn ($value) => is_array($value) ? $value[$key] : $value->{$key});
     }
 
     /**
@@ -48,7 +48,7 @@ class HigherOrderCollectionProxy
      */
     public function __call(string $method, array $parameters = []): mixed
     {
-        return $this->collection->{$this->method}(function ($value) use ($method, $parameters) {
+        return $this->collection->{$this->method}(static function ($value) use ($method, $parameters) {
             return is_string($value)
                 ? $value::{$method}(...$parameters)
                 : $value->{$method}(...$parameters);

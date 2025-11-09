@@ -25,7 +25,7 @@ trait Translatable
     /**
      * Analyse la chaîne de langue d'un fichier, charge le fichier, si nécessaire, et obtient la traduction souhaitée.
      *
-     * @return string|string[]
+     * @return list<string>|string
      */
     public function translate(string $line, array $args)
     {

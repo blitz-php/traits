@@ -21,7 +21,8 @@ trait Tappable
     /**
      * Appelez la Closure donnée avec cette instance puis renvoyez l'instance.
      *
-	 * @param  (callable($this): mixed)|null  $callback
+     * @param (callable($this): mixed)|null $callback
+     *
      * @return ($callback is null ? \BlitzPHP\Traits\Mixins\HigherOrderTapProxy : $this)
      */
     public function tap(?callable $callback = null)

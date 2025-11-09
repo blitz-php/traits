@@ -200,11 +200,11 @@ trait InteractsWithData
      */
     public function str(string $key, mixed $default = null): ?Stringable
     {
-		if (null === $value = $this->data($key, $default)) {
-			return null;
-		}
+        if (null === $value = $this->data($key, $default)) {
+            return null;
+        }
 
-		return Text::of($value);
+        return Text::of($value);
     }
 
     /**
@@ -212,7 +212,7 @@ trait InteractsWithData
      */
     public function string(string $key, mixed $default = null): ?string
     {
-		return $this->str($key, $default)?->toString() ?? null;
+        return $this->str($key, $default)?->toString() ?? null;
     }
 
     /**
@@ -230,7 +230,7 @@ trait InteractsWithData
      */
     public function integer(string $key, int $default = 0): int
     {
-        return intval($this->data($key, $default));
+        return (int) ($this->data($key, $default));
     }
 
     /**
@@ -238,13 +238,13 @@ trait InteractsWithData
      */
     public function float(string $key, float $default = 0.0): float
     {
-        return floatval($this->data($key, $default));
+        return (float) ($this->data($key, $default));
     }
 
     /**
      * Retrieve data from the instance as a Carbon instance.
      *
-     * @param UnitEnum|string|null $tz
+     * @param string|UnitEnum|null $tz
      */
     public function date(string $key, ?string $format = null, $tz = null): ?Date
     {
@@ -266,8 +266,9 @@ trait InteractsWithData
      *
      * @template TEnum of \BackedEnum
      *
-     * @param  class-string<TEnum>  $enumClass
-     * @param  TEnum|null  $default
+     * @param class-string<TEnum> $enumClass
+     * @param TEnum|null          $default
+     *
      * @return TEnum|null
      */
     public function enum(string $key, string $enumClass, $default = null)
@@ -284,8 +285,9 @@ trait InteractsWithData
      *
      * @template TEnum of \BackedEnum
      *
-     * @param  class-string<TEnum>  $enumClass
-     * @return TEnum[]
+     * @param class-string<TEnum> $enumClass
+     *
+     * @return list<TEnum>
      */
     public function enums(string $key, $enumClass): array
     {
@@ -294,7 +296,7 @@ trait InteractsWithData
         }
 
         return $this->collect($key)
-            ->map(fn ($value) => $enumClass::tryFrom($value))
+            ->map(static fn ($value) => $enumClass::tryFrom($value))
             ->filter()
             ->all();
     }
@@ -302,7 +304,7 @@ trait InteractsWithData
     /**
      * Determine if the given enum class is backed.
      *
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     protected function isBackedEnum(string $enumClass): bool
     {
@@ -312,7 +314,7 @@ trait InteractsWithData
     /**
      * Retrieve data from the instance as an array.
      *
-     * @param  array|string|null  $key
+     * @param array|string|null $key
      */
     public function array($key = null): array
     {
@@ -322,7 +324,7 @@ trait InteractsWithData
     /**
      * Retrieve data from the instance as a collection.
      *
-     * @param  array|string|null  $key
+     * @param array|string|null $key
      */
     public function collect($key = null): Collection
     {
