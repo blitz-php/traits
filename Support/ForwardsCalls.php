@@ -21,8 +21,8 @@ trait ForwardsCalls
 {
     /**
      * Transférer un appel de méthode à l'objet donné.
-	 *
-	 * @return mixed
+     *
+     * @return mixed
      *
      * @throws BadMethodCallException
      */

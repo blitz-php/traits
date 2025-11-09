@@ -81,7 +81,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    abstract protected function respondFail(?string $message = "Une erreur s'est produite", ?int $status = StatusCode::INTERNAL_ERROR, null|int|string $code = null, array $errors = []);
+    abstract protected function respondFail(?string $message = "Une erreur s'est produite", ?int $status = StatusCode::INTERNAL_ERROR, int|string|null $code = null, array $errors = []);
 
     /**
      * Utilisé pour les succès génériques pour lesquels aucune méthode personnalisée n'existe.
@@ -99,7 +99,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    protected function respondBadRequest($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondBadRequest($message, array|int|string|null $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -118,7 +118,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    protected function respondConflict($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondConflict($message, array|int|string|null $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -168,7 +168,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    protected function respondForbidden($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondForbidden($message, array|int|string|null $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -189,7 +189,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    protected function respondGone($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondGone($message, array|int|string|null $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -208,7 +208,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    protected function respondInternalError($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondInternalError($message, array|int|string|null $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -227,7 +227,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    protected function respondInvalidToken($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondInvalidToken($message, array|int|string|null $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -246,7 +246,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    protected function respondMethodNotAllowed($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondMethodNotAllowed($message, array|int|string|null $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -276,7 +276,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    protected function respondNotAcceptable($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondNotAcceptable($message, array|int|string|null $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -295,7 +295,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    protected function respondNotFound($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondNotFound($message, array|int|string|null $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -314,7 +314,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    protected function respondNotImplemented($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondNotImplemented($message, array|int|string|null $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -348,7 +348,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    protected function respondPreconditionFailed($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondPreconditionFailed($message, array|int|string|null $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -367,7 +367,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    protected function respondPreconditionRequired($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondPreconditionRequired($message, array|int|string|null $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -386,7 +386,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface|void
      */
-    protected function respondTooManyRequests($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondTooManyRequests($message, array|int|string|null $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
@@ -407,7 +407,7 @@ trait ApiResponseTrait
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    protected function respondUnauthorized($message, null|array|int|string $code = null, array $errors = [])
+    protected function respondUnauthorized($message, array|int|string|null $code = null, array $errors = [])
     {
         if (is_array($code)) {
             $errors = $code;
