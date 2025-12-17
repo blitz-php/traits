@@ -26,17 +26,17 @@ use UnitEnum;
 trait InteractsWithData
 {
     /**
-     * Retrieve all data from the instance.
+     * Récupère toutes les données de l'instance.
      */
     abstract public function all(mixed $keys = null): array;
 
     /**
-     * Retrieve data from the instance.
+     * Récupère les données de l'instance.
      */
     abstract protected function data(?string $key = null, mixed $default = null): mixed;
 
     /**
-     * Determine if the data contains a given key.
+     * Détermine si les données contiennent une clé donnée.
      */
     public function exists(array|string $key): bool
     {
@@ -44,7 +44,7 @@ trait InteractsWithData
     }
 
     /**
-     * Determine if the data contains a given key.
+     * Détermine si les données contiennent une clé donnée.
      */
     public function has(array|string $key): bool
     {
@@ -62,7 +62,7 @@ trait InteractsWithData
     }
 
     /**
-     * Determine if the instance contains any of the given keys.
+     * Détermine si l'instance contient l'une des clés données.
      */
     public function hasAny(array|string $keys): bool
     {
@@ -74,7 +74,7 @@ trait InteractsWithData
     }
 
     /**
-     * Apply the callback if the instance contains the given key.
+     * Applique le callback si l'instance contient la clé donnée.
      *
      * @return $this|mixed
      */
@@ -92,7 +92,7 @@ trait InteractsWithData
     }
 
     /**
-     * Determine if the instance contains a non-empty value for the given key.
+     * Détermine si l'instance contient une valeur non vide pour un élément d'entrée.
      */
     public function filled(array|string $key): bool
     {
@@ -108,7 +108,7 @@ trait InteractsWithData
     }
 
     /**
-     * Determine if the instance contains an empty value for the given key.
+     * Détermine si l'instance contient une valeur vide pour un élément d'entrée.
      */
     public function isNotFilled(array|string $key): bool
     {
@@ -124,7 +124,7 @@ trait InteractsWithData
     }
 
     /**
-     * Determine if the instance contains a non-empty value for any of the given keys.
+     * Détermine si l'instance contient une valeur non vide pour l'une des entrées données.
      */
     public function anyFilled(array|string $keys): bool
     {
@@ -139,10 +139,10 @@ trait InteractsWithData
         return false;
     }
 
-    /**
-     * Apply the callback if the instance contains a non-empty value for the given key.
+	/**
+     * Applique le callback si l'instance contient une valeur non vide pour la clé d'élément d'entrée donnée.
      *
-     * @return $this|mixed
+     * @return mixed|self
      */
     public function whenFilled(string $key, callable $callback, ?callable $default = null)
     {
@@ -158,7 +158,7 @@ trait InteractsWithData
     }
 
     /**
-     * Determine if the instance is missing a given key.
+     * Détermine si l'instance manque une clé donnée.
      */
     public function missing(array|string $key): bool
     {
@@ -168,7 +168,7 @@ trait InteractsWithData
     }
 
     /**
-     * Apply the callback if the instance is missing the given key.
+     * Applique le callback si la clé donnée est manquante dans l'instance.
      *
      * @return $this|mixed
      */
@@ -186,7 +186,7 @@ trait InteractsWithData
     }
 
     /**
-     * Determine if the given key is an empty string for "filled".
+     * Détermine si la clé donnée est une chaîne vide pour "filled".
      */
     protected function isEmptyString(string $key): bool
     {
@@ -196,11 +196,11 @@ trait InteractsWithData
     }
 
     /**
-     * Retrieve data from the instance as a Stringable instance.
+     * Récupère les données de l'instance sous forme d'instance Stringable.
      */
     public function str(string $key, mixed $default = null): ?Stringable
     {
-        if (null === $value = $this->data($key, $default)) {
+        if (null === $value = $this->string($key, $default)) {
             return null;
         }
 
@@ -208,17 +208,21 @@ trait InteractsWithData
     }
 
     /**
-     * Retrieve data from the instance as a string
+     * Récupère les données de l'instance en tant que chaine de caractere.
      */
     public function string(string $key, mixed $default = null): ?string
     {
-        return $this->str($key, $default)?->toString() ?? null;
+        if (null === $value = $this->data($key, $default)) {
+            return null;
+        }
+
+        return (string) $value;
     }
 
     /**
-     * Retrieve data as a boolean value.
+     * Récupère les données sous forme de valeur booléenne.
      *
-     * Returns true when value is "1", "true", "on", and "yes". Otherwise, returns false.
+     * Renvoie true lorsque la valeur est "1", "true", "on" et "yes". Sinon, renvoie faux.
      */
     public function boolean(?string $key = null, bool $default = false): bool
     {
@@ -226,7 +230,7 @@ trait InteractsWithData
     }
 
     /**
-     * Retrieve data as an integer value.
+     * Récupère les données sous forme de valeur entière.
      */
     public function integer(string $key, int $default = 0): int
     {
@@ -234,7 +238,7 @@ trait InteractsWithData
     }
 
     /**
-     * Retrieve data as a float value.
+     * Récupère les données sous forme de valeur flottante.
      */
     public function float(string $key, float $default = 0.0): float
     {
@@ -242,7 +246,7 @@ trait InteractsWithData
     }
 
     /**
-     * Retrieve data from the instance as a Carbon instance.
+     * Récupère les données de l'instance en tant qu'instance Date.
      *
      * @param string|UnitEnum|null $tz
      */
@@ -262,7 +266,7 @@ trait InteractsWithData
     }
 
     /**
-     * Retrieve data from the instance as an enum.
+     * Récupère les données de l'instance sous forme d'énumération.
      *
      * @template TEnum of \BackedEnum
      *
@@ -281,7 +285,7 @@ trait InteractsWithData
     }
 
     /**
-     * Retrieve data from the instance as an array of enums.
+     * Récupère les données de l'instance sous forme de tableau d'énumération.
      *
      * @template TEnum of \BackedEnum
      *
@@ -302,7 +306,7 @@ trait InteractsWithData
     }
 
     /**
-     * Determine if the given enum class is backed.
+     * Détermine si la classe énumérée donnée est prise en charge.
      *
      * @param class-string $enumClass
      */
@@ -312,7 +316,7 @@ trait InteractsWithData
     }
 
     /**
-     * Retrieve data from the instance as an array.
+     * Récupère les données de l'instance sous forme de tableau.
      *
      * @param array|string|null $key
      */
@@ -322,19 +326,19 @@ trait InteractsWithData
     }
 
     /**
-     * Retrieve data from the instance as a collection.
-     *
-     * @param array|string|null $key
+     * Récupère les données de l'instance sous forme de collection.
      */
-    public function collect($key = null): Collection
+    public function collect(array|string|null $key = null): Collection
     {
-        return new Collection(is_array($key) ? $this->only($key) : $this->data($key));
+		return new Collection(is_array($key) ? $this->only($key) : $this->data($key));
     }
 
     /**
-     * Get a subset containing the provided keys with values from the instance data.
+     * Obtient un sous-ensemble contenant les clés fournies avec les valeurs provenant des données d'instance.
+     *
+     * @param array|mixed $keys
      */
-    public function only(mixed $keys): array
+    public function only($keys): array
     {
         $results = [];
 
@@ -354,9 +358,11 @@ trait InteractsWithData
     }
 
     /**
-     * Get all of the data except for a specified array of items.
+     * Récupérer toutes les données à l'exception d'un tableau d'éléments spécifié.
+     *
+     * @param array|mixed $keys
      */
-    public function except(mixed $keys): array
+    public function except($keys): array
     {
         $keys = is_array($keys) ? $keys : func_get_args();
 
