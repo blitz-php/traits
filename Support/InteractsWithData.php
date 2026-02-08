@@ -139,7 +139,7 @@ trait InteractsWithData
         return false;
     }
 
-	/**
+    /**
      * Applique le callback si l'instance contient une valeur non vide pour la clé d'élément d'entrée donnée.
      *
      * @return mixed|self
@@ -330,7 +330,7 @@ trait InteractsWithData
      */
     public function collect(array|string|null $key = null): Collection
     {
-		return new Collection(is_array($key) ? $this->only($key) : $this->data($key));
+        return new Collection(is_array($key) ? $this->only($key) : $this->data($key));
     }
 
     /**

@@ -778,7 +778,7 @@ trait EnumeratesValues
         $result = $initial;
 
         foreach ($this as $key => $value) {
-			/** @var TKey $key */
+            /** @var TKey $key */
             $result = $callback($result, $value, $key);
         }
 

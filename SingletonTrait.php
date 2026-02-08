@@ -55,13 +55,13 @@ trait SingletonTrait
         return static::instance(...$params);
     }
 
-	/**
-	 * Reinitialise l'instance
-	 */
-	public static function reset(): void
-	{
-		static::$_instance = null;
-	}
+    /**
+     * Reinitialise l'instance
+     */
+    public static function reset(): void
+    {
+        static::$_instance = null;
+    }
 
     /**
      * Constructeur de classe. La classe concrète utilisant ce trait peut le remplacer.
